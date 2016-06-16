@@ -1,0 +1,8 @@
+<resources>
+    <!--Va en ingles esta pantalla-->
+    <string name="app_name">NiM4Ejercicio1</string>
+    <string name="amain_usuario">Usuario</string>
+    <string name="amain_contrasenia">Contraseña</string>
+    <string name="amain_ingresar">Ingresar</string>
+    <string name="amain_pb_usuarioEncontrado">Bienvenido</string>
+</resources>
