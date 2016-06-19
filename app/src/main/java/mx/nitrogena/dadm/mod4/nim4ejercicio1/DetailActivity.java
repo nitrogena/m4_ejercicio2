@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
 
@@ -45,11 +46,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     //usando fragments
     private void mostrarPerfil() {
-        ProfileFragment prFr = ProfileFragment.instanciar("perfil");
+        Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioNoEncontrado),Toast.LENGTH_SHORT).show();
+        //ProfileFragment prFr = ProfileFragment.instanciar("perfil");
     }
 
     private void mostrarLista() {
-        ProfileFragment prFr = ProfileFragment.instanciar("lista");
+        Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
+        //ProfileFragment prFr = ProfileFragment.instanciar("lista");
     }
 
 

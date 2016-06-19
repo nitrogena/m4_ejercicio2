@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //popup pequeño
                     //Toast.makeText(getApplicationContext(), "Buscando", Toast.LENGTH_SHORT).show();
                     Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
                     intent.putExtra("cveUsuario", strUsuario);
                     startActivity(intent);
                 }
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
             }
-        },1000*2);
+        },1000*1);
     }
 
 }
