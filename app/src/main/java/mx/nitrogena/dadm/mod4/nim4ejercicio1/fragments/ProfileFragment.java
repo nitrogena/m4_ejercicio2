@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vwF = inflater.inflate(R.layout.fragment_profile, container, false);
         imgPerfil = (ImageView) vwF.findViewById(R.id.fprofile_img_perfil);
-        TextView tvMensaje = (TextView) vwF.findViewById(R.id.txtUserFragment);
+        TextView tvMensaje = (TextView) vwF.findViewById(R.id.fprofile_tv_mensaje);
         Bundle bndl2 = getArguments();
         String strCveMens ;
         if (bndl2 != null)

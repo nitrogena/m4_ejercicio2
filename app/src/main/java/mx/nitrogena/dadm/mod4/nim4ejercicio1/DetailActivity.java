@@ -46,13 +46,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     //usando fragments
     private void mostrarPerfil() {
-        Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioNoEncontrado),Toast.LENGTH_SHORT).show();
-        //ProfileFragment prFr = ProfileFragment.instanciar("perfil");
+        //Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioNoEncontrado),Toast.LENGTH_SHORT).show();
+        ProfileFragment prFr = ProfileFragment.instanciar("perfil");
+        getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFr).commit();
     }
 
     private void mostrarLista() {
-        Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
-        //ProfileFragment prFr = ProfileFragment.instanciar("lista");
+        //Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
+        ProfileFragment prFr = ProfileFragment.instanciar("lista");
+        getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFr).commit();
     }
 
 
