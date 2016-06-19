@@ -9,4 +9,6 @@
     <string name="adetail_bt_perfil">Perfil</string>
     <string name="adetail_bt_lista">Lista</string>
     <string name="bienvenida">Bienvenido %s a mi aplicación</string>
+    <string name="flist_hint_item">Texto del ítem</string>
+    <string name="flist_bt_registrar">Registrar</string>
 </resources>

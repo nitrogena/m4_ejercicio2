@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ListFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
 
 /**
@@ -47,14 +48,14 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     //usando fragments
     private void mostrarPerfil() {
         //Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioNoEncontrado),Toast.LENGTH_SHORT).show();
-        ProfileFragment prFr = ProfileFragment.instanciar("perfil");
+        ProfileFragment prFr = ProfileFragment.instanciar("Estás en la sección de perfil");
         getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFr).commit();
     }
 
     private void mostrarLista() {
         //Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
-        ProfileFragment prFr = ProfileFragment.instanciar("lista");
-        getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFr).commit();
+        //ProfileFragment prFr = ProfileFragment.instanciar("lista");
+        getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, new ListFragment()).commit();
     }
 
 
