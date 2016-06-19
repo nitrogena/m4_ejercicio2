@@ -5,4 +5,8 @@
     <string name="amain_contrasenia">Contraseña</string>
     <string name="amain_ingresar">Ingresar</string>
     <string name="amain_pb_usuarioEncontrado">Bienvenido</string>
+    <string name="amain_pb_usuarioNoEncontrado">Datos erroneos</string>
+    <string name="adetail_bt_perfil">Perfil</string>
+    <string name="adetail_bt_lista">Lista</string>
+    <string name="bienvenida">Bienvenido %s a mi aplicación</string>
 </resources>

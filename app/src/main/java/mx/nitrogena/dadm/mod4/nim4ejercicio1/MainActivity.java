@@ -1,5 +1,6 @@
 package mx.nitrogena.dadm.mod4.nim4ejercicio1;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -17,11 +18,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText etUsuario;
     private EditText etContra;
     private View vwLoading;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
 
     @Override
@@ -34,9 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.amain_bt_ingresar).setOnClickListener(this);
 
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void onClick(View v) {
@@ -59,59 +52,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 vwLoading.setVisibility(View.GONE);
                 if (strUsuario.equals("Nidia") && strContra.equals("dadm")) {
                     //popup pequeño
-                    Toast.makeText(getApplicationContext(), "Buscando", Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Buscando", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),DetailActivity.class);
+                    intent.putExtra("cveUsuario", strUsuario);
+                    startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Datos erroneos", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Datos erroneos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioNoEncontrado),Toast.LENGTH_SHORT).show();
                 }
 
             }
         },1000*2);
-
-
-
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://mx.nitrogena.dadm.mod4.nim4ejercicio1/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://mx.nitrogena.dadm.mod4.nim4ejercicio1/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
 }
 
 
