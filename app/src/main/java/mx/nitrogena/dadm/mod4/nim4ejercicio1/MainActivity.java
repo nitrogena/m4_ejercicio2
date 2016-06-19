@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -50,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 vwLoading.setVisibility(View.GONE);
-                if (strUsuario.equals("Nidia") && strContra.equals("dadm")) {
+                //if (strUsuario.equals("Nidia") && strContra.equals("dadm")) {
+                if (!TextUtils.isEmpty(strUsuario) && !TextUtils.isEmpty(strContra)){
                     //popup pequeño
                     //Toast.makeText(getApplicationContext(), "Buscando", Toast.LENGTH_SHORT).show();
                     Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();

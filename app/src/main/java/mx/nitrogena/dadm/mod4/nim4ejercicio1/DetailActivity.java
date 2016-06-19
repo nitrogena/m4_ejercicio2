@@ -15,15 +15,16 @@ import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
  */
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+private String strUsuario;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         //comunicacion entre actividades
-        String strUsuario = getIntent().getExtras().getString("cveUsuario");
-        String strBienvenida = String.format(getString(R.string.bienvenida),strUsuario);
+        //String strUsuario = getIntent().getExtras().getString("cveUsuario");
+        strUsuario = getIntent().getExtras().getString("cveUsuario");
+        String strBienvenida = String.format(getString(R.string.bienvenida), strUsuario);
 
         TextView tvMensajeB = (TextView) findViewById(R.id.adetail_tv_bienvenida);
         tvMensajeB.setText(strBienvenida);
@@ -48,7 +49,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     //usando fragments
     private void mostrarPerfil() {
         //Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioNoEncontrado),Toast.LENGTH_SHORT).show();
-        ProfileFragment prFr = ProfileFragment.instanciar("Estás en la sección de perfil");
+        //ProfileFragment prFr = ProfileFragment.instanciar("Estás en la sección de perfil");
+        ProfileFragment prFr = ProfileFragment.instanciar(strUsuario);
         getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFr).commit();
     }
 

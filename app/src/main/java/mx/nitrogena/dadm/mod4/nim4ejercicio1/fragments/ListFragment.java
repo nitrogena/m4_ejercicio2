@@ -54,7 +54,7 @@ public class ListFragment extends Fragment {
                     ItemModel item = new ItemModel();
                     item.item = strItem;
                     item.id  = "Descripción "+intCuenta;
-                    item.resourceId = blnBandera ? R.mipmap.ic_launcher : R.mipmap.ic_launcher;
+                    item.resourceId = blnBandera ? R.drawable.ic_action_extension : R.drawable.ic_notification_adb;
                     lstItem.add(item);
                     lvItems.setAdapter(new ItemListAdapter(getActivity(), lstItem));
                     blnBandera = !blnBandera;

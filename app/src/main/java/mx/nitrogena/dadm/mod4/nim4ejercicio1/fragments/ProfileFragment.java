@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.regex.Pattern;
+
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.R;
 
 
@@ -33,13 +35,24 @@ public class ProfileFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vwF = inflater.inflate(R.layout.fragment_profile, container, false);
         imgPerfil = (ImageView) vwF.findViewById(R.id.fprofile_img_perfil);
+
         TextView tvMensaje = (TextView) vwF.findViewById(R.id.fprofile_tv_mensaje);
         Bundle bndl2 = getArguments();
-        String strCveMens ;
-        if (bndl2 != null)
+        String strCveMens = "sin mensaje";
+
+
+        if (bndl2 != null) {
             strCveMens = bndl2.getString("cveMens");
-        else
-            strCveMens = "Sin mensaje";
+            strCveMens = strCveMens.trim();
+        }
+        //else
+            //strCveMens = "Sin mensaje";
+
+        //Para saber la primera letra
+        String chrPl = String.valueOf(strCveMens.charAt(0));
+        boolean blnBandera = Pattern.matches("[a-mA-M]", chrPl);
+        imgPerfil.setImageResource(blnBandera ? R.drawable.ic_action_extension : R.drawable.ic_notification_adb);
+
 
         tvMensaje.setText(strCveMens);
         return vwF;

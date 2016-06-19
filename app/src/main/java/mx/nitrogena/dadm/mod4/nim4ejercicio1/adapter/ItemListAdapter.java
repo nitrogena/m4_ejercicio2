@@ -33,9 +33,9 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel> {
         ImageView imgRw = (ImageView) convertView.findViewById(R.id.rwList_img_registro);
 
         ItemModel itemModel = getItem(position);
-        tvTitulo.setText(ItemModel.item);
-        tvItemDesc.setText(ItemModel.id);
-        imgRw.setImageResource(ItemModel.resourceId);
+        tvTitulo.setText(itemModel.item);
+        tvItemDesc.setText(itemModel.id);
+        imgRw.setImageResource(itemModel.resourceId);
         return convertView;
     }
 }

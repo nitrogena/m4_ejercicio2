@@ -2,12 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
+    <!--<ImageView
         android:id="@+id/fprofile_img_perfil"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_action_extension"
         android:layout_gravity="center_horizontal"
         android:layout_width="56dp"
-        android:layout_height="56dp" />
+        android:layout_height="56dp" />-->
+    <ImageView
+    android:id="@+id/fprofile_img_perfil"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="56dp"
+    android:layout_height="56dp" />
+
     <TextView
         android:id="@+id/fprofile_tv_mensaje"
         android:gravity="center"
