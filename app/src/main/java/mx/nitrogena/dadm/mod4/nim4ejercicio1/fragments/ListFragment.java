@@ -1,6 +1,8 @@
 package mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -28,6 +30,10 @@ public class ListFragment extends Fragment {
     private int intCuenta;
     private boolean blnBandera;
 
+
+    //para comunicar fragment con la actividad
+    OnListSelectedListener mCallback;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,10 +42,18 @@ public class ListFragment extends Fragment {
         lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View vwL, int position, long id) {
-                ItemListAdapter adapter = (ItemListAdapter) parent.getAdapter();
-                ItemModel modelItem = adapter.getItem(position);
+                //ItemListAdapter adapter = (ItemListAdapter) parent.getAdapter();
+                //ItemModel modelItem = adapter.getItem(position);
+
                 ItemModel modelItem2 = lstItem.get(position);
                 Toast.makeText(getActivity(), modelItem2.item, Toast.LENGTH_SHORT).show();
+
+                //para llamar a la actividad
+                //mCallback.onItemSelected(position);
+                mCallback.onItemSelected(modelItem2);
+
+
+
             }
         });
 
@@ -49,11 +63,10 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String strItem = etItem.getText().toString();
-                if(!TextUtils.isEmpty(strItem))
-                {
+                if (!TextUtils.isEmpty(strItem)) {
                     ItemModel item = new ItemModel();
                     item.item = strItem;
-                    item.id  = "Descripción "+intCuenta;
+                    item.id = "Descripción " + intCuenta;
                     item.resourceId = blnBandera ? R.drawable.ic_action_extension : R.drawable.ic_notification_adb;
                     lstItem.add(item);
                     lvItems.setAdapter(new ItemListAdapter(getActivity(), lstItem));
@@ -66,4 +79,41 @@ public class ListFragment extends Fragment {
         });
         return vwL;
     }
+
+
+
+
+
+        // Container Activity must implement this interface
+
+    public interface OnListSelectedListener {
+        //public void onItemSelected(int position);
+        public void onItemSelected(ItemModel itemModel);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+            // This makes sure that the container activity has implemented
+            // the callback interface. If not, it throws an exception
+        try {
+
+
+            mCallback = (OnListSelectedListener) context;
+
+
+
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnListSelectedListener");
+        }
+    }
+
+
+
+
+
+
+
 }

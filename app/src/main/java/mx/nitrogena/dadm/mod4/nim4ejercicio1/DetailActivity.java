@@ -9,13 +9,14 @@ import android.widget.Toast;
 
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ListFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
+import mx.nitrogena.dadm.mod4.nim4ejercicio1.model.ItemModel;
 
 /**
  * Created by USUARIO on 18/06/2016.
  */
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-private String strUsuario;
+    private String strUsuario;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +60,20 @@ private String strUsuario;
         //ProfileFragment prFr = ProfileFragment.instanciar("lista");
         getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, new ListFragment()).commit();
     }
+
+
+    public void onItemSelected(ItemModel itemModel) {
+        // The user selected the headline of an article from the HeadlinesFragment
+        // Do something here to display that article
+        ProfileFragment prFrDet = ProfileFragment.instanciar(itemModel.item);
+        getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFrDet).commit();
+
+
+        //Toast.makeText(getApplicationContext(),"Ver datos",Toast.LENGTH_SHORT).show();
+
+    }
+
+
 
 
 }
