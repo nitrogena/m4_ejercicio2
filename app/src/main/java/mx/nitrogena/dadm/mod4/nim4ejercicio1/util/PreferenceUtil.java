@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
+import java.util.Date;
+
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.model.UserModel;
 
 
@@ -38,5 +40,26 @@ public class PreferenceUtil {
 
     }
 
+    public void saveDate(String strInicio){
+        sp.edit().putString("ultimo_inicio", strInicio).apply();
+    }
+
+    public String getDate(){
+        String strDate = sp.getString("ultimo_inicio", null);
+
+        if (TextUtils.isEmpty(strDate)){
+            return null;
+        }
+        return strDate;
+    }
+    public void saveDecision(boolean blnCheked){
+        sp.edit().putBoolean("inicio_recordar", blnCheked).apply();
+    }
+    public boolean getDecision(){
+        boolean blnDecision = sp.getBoolean("inicio_recordar", false);
+        return  blnDecision;
+    }
+
+/*http://www.tutorialspoint.com/android/android_shared_preferences.htm*/
 
 }

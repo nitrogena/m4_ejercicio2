@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private UserDataSource userDataSource;
 
+    private boolean blnCheked;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          /*Cursor c =db.query("USERTABLE",null,"username=? and pass=?",new String[]{"user","pass},null,null,null,null);*/
 
 
+
         //Para la base de datos
         userDataSource = new UserDataSource(getApplicationContext());
 
@@ -75,11 +78,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         preferenceUtil= new PreferenceUtil(getApplicationContext());
+
+
+        //con preferencias
+        boolean blnDecision = preferenceUtil.getDecision();
+        if (blnDecision) {
+            UserModel modelUser = preferenceUtil.getUser();
+            etUsuario.setText(modelUser.userName);
+            etContra.setText(modelUser.password);
+        }
+
+
         CheckBox checkBox = (CheckBox) findViewById(R.id.chkRememberMe);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Log.d(ServiceTimer.TAG, "Checkeo es: "+isChecked);
+                blnCheked = isChecked;
             }
         });
         ((TextView)findViewById(R.id.txtDate))
@@ -133,9 +148,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startService(new Intent(getApplicationContext(), ServiceTimer.class));
 
 
+                    PreferenceUtil util = new PreferenceUtil(getApplicationContext());
+                    util.saveDate(new SimpleDateFormat("dd-MMM-yy hh:mm").format(new Date()));
+                    //finish();
 
+                    if (blnCheked){
+                        util.saveUser(new UserModel(strUsuario, strContra));
+                        util.saveDecision(blnCheked);
 
-
+                    }
 
                 }
                 else{

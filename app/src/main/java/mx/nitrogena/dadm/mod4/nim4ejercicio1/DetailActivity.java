@@ -21,6 +21,7 @@ import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ListFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.model.ItemModel;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.service.ServiceTimer;
+import mx.nitrogena.dadm.mod4.nim4ejercicio1.util.PreferenceUtil;
 
 /**
  * Created by USUARIO on 18/06/2016.
@@ -29,6 +30,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     //se usa en el intent
     private String strUsuario;
+
+    private PreferenceUtil preferenceUtil;
 
     private TextView txtTimer;
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -56,6 +59,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         //Para el servicio
         txtTimer = (TextView) findViewById(R.id.txtTimer);
+
+
+        preferenceUtil= new PreferenceUtil(getApplicationContext());
+        //con preferencias
+        String strDate = preferenceUtil.getDate();
+        TextView tvInicio = (TextView) findViewById(R.id.adetail_tv_ultimoInicio);
+        tvInicio.setText(strDate);
 
 
     }
