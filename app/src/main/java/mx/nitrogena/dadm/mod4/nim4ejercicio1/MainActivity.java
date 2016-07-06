@@ -23,6 +23,7 @@ import java.util.Date;
 
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.model.UserModel;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.service.ServiceTimer;
+import mx.nitrogena.dadm.mod4.nim4ejercicio1.sql.UserDataSource;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.util.PreferenceUtil;
 
 import static android.widget.Toast.*;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private View vwLoading;
     private PreferenceUtil preferenceUtil;
 
+    private UserDataSource userDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          /*Cursor c =db.query("USERTABLE",null,"username=? and pass=?",new String[]{"user","pass},null,null,null,null);*/
 
 
+        //Para la base de datos
+        userDataSource = new UserDataSource(getApplicationContext());
 
 
         setContentView(R.layout.activity_main);
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         findViewById(R.id.btnRegisterLogin).setOnClickListener(this);
+
+
         preferenceUtil= new PreferenceUtil(getApplicationContext());
         CheckBox checkBox = (CheckBox) findViewById(R.id.chkRememberMe);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -102,8 +108,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
                 vwLoading.setVisibility(View.GONE);
 
+                //con preferencias
+                //UserModel modelUser = preferenceUtil.getUser();
 
-                UserModel modelUser = preferenceUtil.getUser();
+                //Con la base de datos
+                UserModel modelUser = userDataSource.getUser(strUsuario, strContra);
+
+
                 if(modelUser == null) {
                     Toast.makeText(getApplicationContext(), "You need register", Toast.LENGTH_SHORT).show();
 
@@ -120,6 +131,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent);
 
                     startService(new Intent(getApplicationContext(), ServiceTimer.class));
+
+
+
+
+
+
                 }
                 else{
                     //Toast.makeText(getApplicationContext(), "Datos erroneos", Toast.LENGTH_SHORT).show();

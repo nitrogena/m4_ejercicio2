@@ -54,7 +54,7 @@
     </LinearLayout>
     <CheckBox
         android:layout_marginTop="140dp"
-        android:layout_below="@+id/activity_main_password"
+        android:layout_below="@+id/amain_et_contrasenia"
         android:id="@+id/chkRememberMe"
         android:text="Recuerda los datos"
         android:layout_width="wrap_content"
