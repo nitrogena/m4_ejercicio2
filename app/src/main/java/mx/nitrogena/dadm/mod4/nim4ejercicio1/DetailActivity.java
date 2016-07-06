@@ -1,22 +1,44 @@
 package mx.nitrogena.dadm.mod4.nim4ejercicio1;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ListFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.model.ItemModel;
+import mx.nitrogena.dadm.mod4.nim4ejercicio1.service.ServiceTimer;
 
 /**
  * Created by USUARIO on 18/06/2016.
  */
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //se usa en el intent
     private String strUsuario;
+
+    private TextView txtTimer;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int counter = intent.getExtras().getInt("timer");
+            txtTimer.setText(String.format("Session lenght %s seconds",counter));
+        }
+    };
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,12 +54,16 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.adetail_bt_verPerfil).setOnClickListener(this);
         findViewById(R.id.adetail_bt_verLista).setOnClickListener(this);
 
+        //Para el servicio
+        txtTimer = (TextView) findViewById(R.id.txtTimer);
+
+
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.adetail_bt_verPerfil:
                 mostrarPerfil();
                 break;
@@ -57,23 +83,52 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     private void mostrarLista() {
         //Toast.makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado),Toast.LENGTH_SHORT).show();
-        //ProfileFragment prFr = ProfileFragment.instanciar("lista");
+        ProfileFragment prFr = ProfileFragment.instanciar("lista");
         getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, new ListFragment()).commit();
+
+
+        //SUGERENCIA DESPUES DE REVISION
+       /* ListFragment listFragment = new ListFragment();
+        listFragment.setmCallback((ListFragment.OnListSelectedListener) this);
+        getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, listFragment).commit();*/
+
     }
 
+    /*
+    public void onListSelected(int position) {
+        Toast.makeText(getApplicationContext(),"Llegando detali",Toast.LENGTH_SHORT).show();
 
-    public void onItemSelected(ItemModel itemModel) {
         // The user selected the headline of an article from the HeadlinesFragment
         // Do something here to display that article
-        ProfileFragment prFrDet = ProfileFragment.instanciar(itemModel.item);
-        getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFrDet).commit();
+        //ProfileFragment prFrDet = ProfileFragment.instanciar(itemModel.item);
+        //getFragmentManager().beginTransaction().replace(R.id.adetail_frL_fragmentHolder, prFrDet).commit();
 
 
         //Toast.makeText(getApplicationContext(),"Ver datos",Toast.LENGTH_SHORT).show();
 
     }
+    */
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ServiceTimer.ACTION_SEND_TIMER);
+        registerReceiver(broadcastReceiver,filter);
+        Log.d(ServiceTimer.TAG, "OnResume, se reinicia boradcast");
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(ServiceTimer.TAG, "onPause quitando broadcast");
+        unregisterReceiver(broadcastReceiver);
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(ServiceTimer.TAG, "OnDestroy, terminando servicio");
+        stopService(new Intent(getApplicationContext(), ServiceTimer.class));
+    }
 }

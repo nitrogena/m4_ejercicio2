@@ -5,4 +5,10 @@
 
     <dimen name="amain_et_marginTop">16dp</dimen>
     <dimen name="margin_l">16dp</dimen>
+
+
+
+    <dimen name="texto_title">19sp</dimen>
+    <dimen name="image_size">80dp</dimen>
+
 </resources>

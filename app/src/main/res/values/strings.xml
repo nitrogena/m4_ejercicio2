@@ -1,6 +1,6 @@
 <resources>
     <!--Va en ingles esta pantalla-->
-    <string name="app_name">NiM4Ejercicio1</string>
+    <string name="app_name">NiM4Ejercicio2</string>
     <string name="amain_usuario">Usuario</string>
     <string name="amain_contrasenia">Contraseña</string>
     <string name="amain_ingresar">Ingresar</string>
@@ -11,4 +11,5 @@
     <string name="bienvenida">Bienvenido %s a mi aplicación</string>
     <string name="flist_hint_item">Texto del ítem</string>
     <string name="flist_bt_registrar">Registrar</string>
+    <string name="delete_title">Eliminar</string>
 </resources>
