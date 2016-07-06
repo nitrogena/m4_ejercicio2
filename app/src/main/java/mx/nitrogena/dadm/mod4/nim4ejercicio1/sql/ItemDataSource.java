@@ -26,10 +26,10 @@ public class ItemDataSource {
     public void saveItem(ItemModel modelItem)
     {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(MySqliteHelper.COLUMN_ITEM_NAME,modelItem.item);
-        contentValues.put(MySqliteHelper.COLUMN_ITEM_DESC,modelItem.description);
-        contentValues.put(MySqliteHelper.COLUMN_ITEM_RESOURCE,modelItem.resourceId);
-        db.insert(MySqliteHelper.TABLE_NAME,null,contentValues);
+        contentValues.put(MySqliteHelper.COLUMN_ITEM_NAME, modelItem.item);
+        contentValues.put(MySqliteHelper.COLUMN_ITEM_DESC, modelItem.description);
+        contentValues.put(MySqliteHelper.COLUMN_ITEM_RESOURCE, modelItem.resourceId);
+        db.insert(MySqliteHelper.TABLE_NAME, null, contentValues);
     }
     public void deleteItem(ItemModel modelItem)
     {

@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void launchRegister() {
-        Intent intent = new Intent(getApplicationContext(), ActivityRegister.class);
+        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(intent);
     }
 
