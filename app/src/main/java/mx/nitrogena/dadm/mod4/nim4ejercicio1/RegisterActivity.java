@@ -62,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                     mPassword.setText("");
 
                 }
+                finish();
 
             }
         });

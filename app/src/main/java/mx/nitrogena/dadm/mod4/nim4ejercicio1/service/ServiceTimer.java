@@ -20,7 +20,7 @@ public class ServiceTimer extends Service {
         @Override
         public void run() {
             counter++;
-            handler.postDelayed(runnable,1000);
+            handler.postDelayed(runnable, 1000);
             Intent i = new Intent(ACTION_SEND_TIMER);
             i.putExtra("timer", counter);
             sendBroadcast(i);

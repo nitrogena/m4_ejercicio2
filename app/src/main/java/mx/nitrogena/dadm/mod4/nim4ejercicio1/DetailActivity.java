@@ -38,7 +38,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onReceive(Context context, Intent intent) {
             int counter = intent.getExtras().getInt("timer");
-            txtTimer.setText(String.format("Session lenght %s seconds",counter));
+            txtTimer.setText(String.format("Session lenght %s seconds", counter));
         }
     };
 
@@ -56,12 +56,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvMensajeB.setText(strBienvenida);
         findViewById(R.id.adetail_bt_verPerfil).setOnClickListener(this);
         findViewById(R.id.adetail_bt_verLista).setOnClickListener(this);
+        findViewById(R.id.adetail_bt_cerrar).setOnClickListener(this);
 
         //Para el servicio
         txtTimer = (TextView) findViewById(R.id.txtTimer);
 
 
-        preferenceUtil= new PreferenceUtil(getApplicationContext());
+        preferenceUtil = new PreferenceUtil(getApplicationContext());
         //con preferencias
         String strDate = preferenceUtil.getDate();
         TextView tvInicio = (TextView) findViewById(R.id.adetail_tv_ultimoInicio);
@@ -79,6 +80,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.adetail_bt_verLista:
                 mostrarLista();
+                break;
+            case R.id.adetail_bt_cerrar:
+                cerrarSesion();
                 break;
         }
     }
@@ -124,7 +128,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         super.onResume();
         IntentFilter filter = new IntentFilter();
         filter.addAction(ServiceTimer.ACTION_SEND_TIMER);
-        registerReceiver(broadcastReceiver,filter);
+        registerReceiver(broadcastReceiver, filter);
         Log.d(ServiceTimer.TAG, "OnResume, se reinicia boradcast");
     }
 
@@ -140,5 +144,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         super.onDestroy();
         Log.d(ServiceTimer.TAG, "OnDestroy, terminando servicio");
         stopService(new Intent(getApplicationContext(), ServiceTimer.class));
+    }
+
+    private void cerrarSesion(){
+        //txtTimer
     }
 }

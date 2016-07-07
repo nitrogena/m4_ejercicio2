@@ -135,8 +135,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     //if (strUsuario.equals("Nidia") && strContra.equals("dadm")) {
                 }
-                //else if (!TextUtils.isEmpty(strUsuario) && !TextUtils.isEmpty(strContra)){
                 else if(strUsuario.equals(modelUser.userName) && strContra.equals(modelUser.password)){
+
+                    //else if (!TextUtils.isEmpty(strUsuario) && !TextUtils.isEmpty(strContra)){
+
+
                     //popup pequeño
                     //Toast.makeText(getApplicationContext(), "Buscando", Toast.LENGTH_SHORT).show();
                     //makeText(getApplicationContext(),getApplicationContext().getResources().getString(R.string.amain_pb_usuarioEncontrado), LENGTH_SHORT).show();
@@ -176,6 +179,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(intent);
     }
+
+    /*http://www.sgoliver.net/blog/desarrollando-una-aplicacion-android-sencilla-android-studio*/
 
 }
 

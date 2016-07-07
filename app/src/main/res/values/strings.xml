@@ -12,4 +12,5 @@
     <string name="flist_hint_item">Texto del ítem</string>
     <string name="flist_bt_registrar">Registrar</string>
     <string name="delete_title">Eliminar</string>
+    <string name="adetail_bt_cerrar">cerrar sesión</string>
 </resources>
