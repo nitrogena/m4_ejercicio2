@@ -17,6 +17,9 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ListFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.model.ItemModel;
@@ -42,6 +45,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         }
     };
 
+    private TextView tvCierre;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +72,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         TextView tvInicio = (TextView) findViewById(R.id.adetail_tv_ultimoInicio);
         tvInicio.setText(strDate);
 
-
+        tvCierre = (TextView) findViewById(R.id.adetail_tv_cierre);
     }
 
 
@@ -147,6 +151,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void cerrarSesion(){
-        //txtTimer
+
+        int counter2 = getIntent().getExtras().getInt("timer");
+        String strDuracion = String.format("La sesión duro %s. ", counter2);
+        //txtTimer.setText(String.format("La sesión duro %s", counter2););
+        String strCierre = new SimpleDateFormat("dd-MMM-yy hh:mm").format(new Date());
+        strCierre = "La sesión se cerró " + strCierre;
+        tvCierre.setText(strDuracion + strCierre);
     }
 }
