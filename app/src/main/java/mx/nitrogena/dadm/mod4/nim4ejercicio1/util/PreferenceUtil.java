@@ -60,6 +60,10 @@ public class PreferenceUtil {
         return  blnDecision;
     }
 
+    public void clearSp(){
+        sp.edit().clear();
+    }
+
 /*http://www.tutorialspoint.com/android/android_shared_preferences.htm*/
 
 }

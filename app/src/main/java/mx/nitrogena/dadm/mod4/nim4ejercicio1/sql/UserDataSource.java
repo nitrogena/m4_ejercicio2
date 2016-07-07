@@ -88,6 +88,11 @@ public class UserDataSource {
 
         return modelUser;
     }
+
+    public void deleteAll(){
+        db.delete(MySqliteHelper.TABLE_NAME_USER, null, null);
+    }
+
 /*http://elbauldeandroid.blogspot.mx/2013/02/base-de-datos-sqlite.html*/
 }
 

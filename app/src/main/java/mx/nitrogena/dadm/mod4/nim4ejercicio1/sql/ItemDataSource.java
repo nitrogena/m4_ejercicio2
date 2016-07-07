@@ -58,4 +58,8 @@ public class ItemDataSource {
         return modelItemList;
     }
 
+    public void deleteAll(){
+        db.delete(MySqliteHelper.TABLE_NAME, null, null);
+    }
+
 }

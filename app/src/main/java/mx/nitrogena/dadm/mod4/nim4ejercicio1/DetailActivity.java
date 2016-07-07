@@ -24,6 +24,8 @@ import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ListFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.fragments.ProfileFragment;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.model.ItemModel;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.service.ServiceTimer;
+import mx.nitrogena.dadm.mod4.nim4ejercicio1.sql.ItemDataSource;
+import mx.nitrogena.dadm.mod4.nim4ejercicio1.sql.UserDataSource;
 import mx.nitrogena.dadm.mod4.nim4ejercicio1.util.PreferenceUtil;
 
 /**
@@ -46,6 +48,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     };
 
     private TextView tvCierre;
+
+    private UserDataSource userDataSource;
+    private ItemDataSource itemDataSource;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +78,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvInicio.setText(strDate);
 
         tvCierre = (TextView) findViewById(R.id.adetail_tv_cierre);
+
+        userDataSource = new UserDataSource(getApplicationContext());
+        itemDataSource = new ItemDataSource(getApplicationContext());
     }
 
 
@@ -151,12 +159,16 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void cerrarSesion(){
-
+        txtTimer.setText("");
         int counter2 = getIntent().getExtras().getInt("timer");
         String strDuracion = String.format("La sesión duro %s. ", counter2);
         //txtTimer.setText(String.format("La sesión duro %s", counter2););
         String strCierre = new SimpleDateFormat("dd-MMM-yy hh:mm").format(new Date());
         strCierre = "La sesión se cerró " + strCierre;
         tvCierre.setText(strDuracion + strCierre);
+        preferenceUtil.clearSp();
+        userDataSource.deleteAll();
+        itemDataSource.deleteAll();
+
     }
 }
